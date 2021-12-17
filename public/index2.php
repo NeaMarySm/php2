@@ -10,22 +10,23 @@ $loader = new FilesystemLoader('../templates');
 $twig = new Environment($loader, []);
 $dir = '..';
 
-try {
-    $result = mysqli_query($link, 'select * from gallery where 1 order by view_count desc');
-$images = [];
+$image_id = $_GET['id'];
+$title = 'Image' . $image_id;
+$result = mysqli_query($link, "select `file`, view_count from gallery where id = $image_id");
+mysqli_query($link, "update gallery set view_count = view_count+1 where id = $image_id");
+
 while($row = mysqli_fetch_assoc($result)){
     $images[] = $row;
-} 
+}
+
 mysqli_close($link); 
 
-$template = $twig->load('index.html.twig');
+$template = $twig->load('index2.html.twig');
 
 echo $template->render([
-    'title' => 'Gallery',
+    'title' => $title,
     'dir' => $dir, 
-    'images' => $images
+    'images' => $images,
+    'image_id' => $image_id
 
 ]);
-} catch (Exception $exception){
-    echo 'ERROR:'. $exception->getMessage();
-}

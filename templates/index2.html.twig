@@ -1,0 +1,20 @@
+{% extends "index.html.twig" %}
+{% block title %}
+<title>
+    {{title}}
+</title>
+{% endblock %}
+
+{% block body %}
+<body>
+    {% for image in images %}
+    <img src="{{image.file}}" alt="">
+    <p class='view_text'>Просмотры: 
+     <span class='views'>{{image.view_count}}</span>
+    </p>
+    {% endfor %}
+    <a href="index.php" class='btn'>Назад</a>
+</body>
+{% endblock %}
+
+
