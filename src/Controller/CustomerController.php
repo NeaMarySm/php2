@@ -18,10 +18,10 @@ class CustomerController extends AbstractController
     {
         $manager = $managerRegistry->getRepository(Customer::class);
         $customer = $manager->find($customer_id);
-        foreach($customer->getAddress() as $address){
-            var_dump($address);
-            die();
-        }
+        return $this->render('customer/index.html.twig', [
+            'customer' => $customer,
+        ]);
+        
     }
 
     #[Route('/customer/create_customer', name: 'create_customer')]
