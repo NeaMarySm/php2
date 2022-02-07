@@ -64,7 +64,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "lesson6\\SockStore\\": "lesson6/task2/",
+            "lesson6\\hh\\": "lesson6/task1/"
         }
     },
     "autoload-dev": {
